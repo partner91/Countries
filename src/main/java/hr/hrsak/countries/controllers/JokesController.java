@@ -1,6 +1,6 @@
 package hr.hrsak.countries.controllers;
 
-import hr.hrsak.countries.services.CountryService;
+import hr.hrsak.countries.services.JokeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,13 +10,13 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/v1")
-public class CountriesController {
+public class JokesController {
 
     @Resource
-    private CountryService countryService;
-    //Test
-    @GetMapping("/countries")
-    public ResponseEntity<String[]> getAllCountries() {
-        return ResponseEntity.ok(countryService.getAllCountries());
+    private JokeService jokeService;
+
+    @GetMapping("/joke")
+    public ResponseEntity<String> getJoke() {
+        return ResponseEntity.ok(jokeService.getJoke());
     }
 }
