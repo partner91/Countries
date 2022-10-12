@@ -14,7 +14,7 @@ public class CountriesController {
 
     @Resource
     private CountryService countryService;
-
+    //Test
     @GetMapping("/countries")
     public ResponseEntity<String[]> getAllCountries() {
         return ResponseEntity.ok(countryService.getAllCountries());
