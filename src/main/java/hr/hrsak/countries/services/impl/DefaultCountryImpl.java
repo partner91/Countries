@@ -1,6 +1,7 @@
 package hr.hrsak.countries.services.impl;
 
 
+import hr.hrsak.countries.dto.Joke;
 import hr.hrsak.countries.services.JokeService;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -20,15 +21,15 @@ public class DefaultCountryImpl implements JokeService {
 
 
     @Override
-    public String getJoke() {
+    public Joke getJoke() {
         try{
             Document doc = Jsoup.connect(getRandomUrl(url)).get();
             Elements joke = doc.getElementsByClass("joke__content");
             int randomJoke = rnd.nextInt(joke.size());
-            return StringUtils.capitalize(joke.get(randomJoke).html().replace("<p>", "").replace("</p>", ""));
+            return new Joke(StringUtils.capitalize(joke.get(randomJoke).html().replace("<p>", "").replace("</p>", "")));
         } catch (IOException e){
             System.out.println(e.getMessage());
-            return "No joke for you!";
+            return new Joke("No joke for you!");
         }
     }
 

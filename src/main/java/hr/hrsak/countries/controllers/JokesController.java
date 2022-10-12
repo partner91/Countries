@@ -1,5 +1,6 @@
 package hr.hrsak.countries.controllers;
 
+import hr.hrsak.countries.dto.Joke;
 import hr.hrsak.countries.services.JokeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ public class JokesController {
     private JokeService jokeService;
 
     @GetMapping("/joke")
-    public ResponseEntity<String> getJoke() {
+    public ResponseEntity<Joke> getJoke() {
         return ResponseEntity.ok(jokeService.getJoke());
     }
 }
