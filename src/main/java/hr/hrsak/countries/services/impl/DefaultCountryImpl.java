@@ -26,7 +26,8 @@ public class DefaultCountryImpl implements JokeService {
             Document doc = Jsoup.connect(getRandomUrl(url)).get();
             Elements joke = doc.getElementsByClass("joke__content");
             int randomJoke = rnd.nextInt(joke.size());
-            return new Joke(StringUtils.capitalize(joke.get(randomJoke).html().replace("<p>", "").replace("</p>", "")));
+            return new Joke(StringUtils.capitalize(joke.get(randomJoke).html().replace("<p>", "").replace("</p>", "")
+                    .replace("<div itemprop=\"articleBody\">", "").replace("</div>", "")).replace("\n", ""));
         } catch (IOException e){
             System.out.println(e.getMessage());
             return new Joke("No joke for you!");
